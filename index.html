@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oshi no Ko — Fan Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+
+        /* ── Colores base del anime ── */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0010;
+            color: #f0e6ff;
+            min-height: 100vh;
+        }
+
+        /* ── Barra de navegación ── */
+        nav {
+            background-color: rgba(10, 0, 20, 0.95);
+            border-bottom: 1px solid #3a1060;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .nav-marca {
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: #ff6eb4;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #c9a0ff;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #ff6eb4;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            background: linear-gradient(145deg, #0a0010, #1a0030, #2a0050, #0a0010);
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Estrellas decorativas de fondo */
+        .hero::before {
+            content: '★ ✦ ★ ✦ ★ ✦ ★ ✦ ★ ✦ ★ ✦ ★ ✦ ★';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 1.2rem;
+            color: rgba(255, 110, 180, 0.15);
+            letter-spacing: 8px;
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '✦ ★ ✦ ★ ✦ ★ ✦ ★ ✦ ★ ✦ ★ ✦ ★ ✦';
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 1.2rem;
+            color: rgba(255, 110, 180, 0.15);
+            letter-spacing: 8px;
+            pointer-events: none;
+        }
+
+        .hero-ojo {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 20px #ff6eb4);
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 6vw, 4rem);
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: -1px;
+            margin-bottom: 0.3rem;
+        }
+
+        .hero h1 span {
+            color: #ff6eb4;
+        }
+
+        .hero-subtitulo {
+            font-size: 1rem;
+            color: #c9a0ff;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero-frase {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+            margin-top: 1.2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6eb4, #a855f7);
+            color: #fff;
+            font-size: 0.78rem;
+            font-weight: 800;
+            padding: 0.35rem 1.2rem;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ── Sección de personajes ── */
+        .seccion {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+
+        .seccion-tag {
+            display: inline-block;
+            background: rgba(168, 85, 247, 0.2);
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            color: #c9a0ff;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.25rem 0.9rem;
+            border-radius: 20px;
+            margin-bottom: 0.6rem;
+        }
+
+        .seccion-titulo {
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 2rem;
+        }
+
+        /* Grilla de personajes */
+        .personajes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Tarjeta de personaje */
+        .tarjeta-personaje {
+            background-color: #100020;
+            border: 1px solid #3a1060;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .tarjeta-personaje:hover {
+            transform: translateY(-6px);
+            border-color: #ff6eb4;
+            box-shadow: 0 12px 30px rgba(255, 110, 180, 0.2);
+        }
+
+        /* Encabezado de color de cada personaje */
+        .tarjeta-encabezado {
+            padding: 2rem 1rem 1rem;
+            position: relative;
+        }
+
+        .tarjeta-emoji {
+            font-size: 4rem;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+        }
+
+        .tarjeta-nombre {
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 0.2rem;
+        }
+
+        .tarjeta-rol {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+            margin-bottom: 0.8rem;
+        }
+
+        .tarjeta-descripcion {
+            font-size: 0.82rem;
+            color: #a080c0;
+            line-height: 1.6;
+            padding: 0 1.2rem 1.5rem;
+            border-top: 1px solid #1e0040;
+            padding-top: 0.8rem;
+        }
+
+        /* ── Sección de frases ── */
+        .seccion-frases {
+            background-color: #0d0018;
+            border-top: 1px solid #1e0040;
+            border-bottom: 1px solid #1e0040;
+        }
+
+        .frase-card {
+            background: linear-gradient(135deg, #1a0030, #0d0018);
+            border: 1px solid #3a1060;
+            border-left: 4px solid #ff6eb4;
+            border-radius: 14px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .frase-texto {
+            font-size: 1rem;
+            color: #f0e6ff;
+            font-style: italic;
+            line-height: 1.7;
+            margin-bottom: 0.5rem;
+        }
+
+        .frase-autor {
+            font-size: 0.78rem;
+            color: #ff6eb4;
+            font-weight: 700;
+            text-align: right;
+        }
+
+        /* ── Footer ── */
+        footer {
+            background-color: #060010;
+            border-top: 1px solid #1e0040;
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            color: rgba(200, 160, 255, 0.5);
+            font-size: 0.85rem;
+        }
+
+        footer strong {
+            color: #ff6eb4;
+        }
+
+        footer a {
+            color: #c9a0ff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #ff6eb4;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 600px) {
+            .personajes-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .hero {
+                padding: 3.5rem 1.2rem;
+            }
+
+            nav {
+                justify-content: center;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- NAVEGACIÓN -->
+    <nav>
+        <a href="#" class="nav-marca">★ Oshi no Ko</a>
+        <div class="nav-links">
+            <a href="#personajes">Personajes</a>
+            <a href="#frases">Frases</a>
+            <a href="#sobre">Sobre el anime</a>
+        </div>
+    </nav>
+
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-ojo">⭐</div>
+        <div class="hero-badge">Anime · Manga · 2023</div>
+        <h1>Oshi no <span>Ko</span></h1>
+        <p class="hero-subtitulo">【推しの子】</p>
+        <p class="hero-frase">
+            "En el mundo del entretenimiento, la mentira más brillante
+            puede ser más real que la verdad más oscura."
+        </p>
+    </section>
+
+
+    <!-- PERSONAJES -->
+    <section class="seccion" id="personajes">
+        <span class="seccion-tag">★ Elenco</span>
+        <h2 class="seccion-titulo">Personajes Principales</h2>
+
+        <div class="personajes-grid">
+
+            <!-- Ai Hoshino -->
+            <div class="tarjeta-personaje" style="border-color: #ff6eb4;">
+                <div class="tarjeta-encabezado" style="background: linear-gradient(135deg, #3a0030, #1a0010);">
+                    <div class="tarjeta-emoji">🌸</div>
+                    <div class="tarjeta-nombre">Ai Hoshino</div>
+                    <div class="tarjeta-rol" style="color: #ff6eb4;">Idol · B-Komachi</div>
+                </div>
+                <p class="tarjeta-descripcion">
+                    La idol más brillante de su generación. Sus ojos en forma de estrella esconden
+                    el secreto más profundo del anime. Madre de Aqua y Ruby.
+                </p>
+            </div>
+
+            <!-- Aqua Hoshino -->
+            <div class="tarjeta-personaje" style="border-color: #6090ff;">
+                <div class="tarjeta-encabezado" style="background: linear-gradient(135deg, #001040, #000820);">
+                    <div class="tarjeta-emoji">⭐</div>
+                    <div class="tarjeta-nombre">Aqua Hoshino</div>
+                    <div class="tarjeta-rol" style="color: #6090ff;">Actor · Protagonista</div>
+                </div>
+                <p class="tarjeta-descripcion">
+                    Reencarnado como hijo de Ai. Utiliza el mundo del entretenimiento
+                    para descubrir la verdad sobre la muerte de su madre.
+                </p>
+            </div>
+
+            <!-- Ruby Hoshino -->
+            <div class="tarjeta-personaje" style="border-color: #ff4466;">
+                <div class="tarjeta-encabezado" style="background: linear-gradient(135deg, #2a0010, #100008);">
+                    <div class="tarjeta-emoji">💎</div>
+                    <div class="tarjeta-nombre">Ruby Hoshino</div>
+                    <div class="tarjeta-rol" style="color: #ff4466;">Idol · B-Komachi</div>
+                </div>
+                <p class="tarjeta-descripcion">
+                    Hermana gemela de Aqua. Sueña con convertirse en idol igual que
+                    su madre Ai. Energética, positiva e imparable.
+                </p>
+            </div>
+
+            <!-- Kana Arima -->
+            <div class="tarjeta-personaje" style="border-color: #ffd700;">
+                <div class="tarjeta-encabezado" style="background: linear-gradient(135deg, #201000, #0f0800);">
+                    <div class="tarjeta-emoji">🎭</div>
+                    <div class="tarjeta-nombre">Kana Arima</div>
+                    <div class="tarjeta-rol" style="color: #ffd700;">Actriz · B-Komachi</div>
+                </div>
+                <p class="tarjeta-descripcion">
+                    Ex-niña prodigio de la actuación. Su talento innato choca con
+                    la industria, hasta que Aqua la ayuda a redescubrirse.
+                </p>
+            </div>
+
+            <!-- Mem-cho -->
+            <div class="tarjeta-personaje" style="border-color: #ff9000;">
+                <div class="tarjeta-encabezado" style="background: linear-gradient(135deg, #201500, #0f0a00);">
+                    <div class="tarjeta-emoji">🦊</div>
+                    <div class="tarjeta-nombre">Mem-cho</div>
+                    <div class="tarjeta-rol" style="color: #ff9000;">Idol · B-Komachi</div>
+                </div>
+                <p class="tarjeta-descripcion">
+                    Creadora de contenido y miembro de B-Komachi. Aparenta ser
+                    más joven de lo que es. Alegre y trabajadora.
+                </p>
+            </div>
+
+            <!-- Miyako -->
+            <div class="tarjeta-personaje" style="border-color: #a0ffa0;">
+                <div class="tarjeta-encabezado" style="background: linear-gradient(135deg, #001500, #000a00);">
+                    <div class="tarjeta-emoji">👩‍💼</div>
+                    <div class="tarjeta-nombre">Miyako Saitou</div>
+                    <div class="tarjeta-rol" style="color: #a0ffa0;">Productora · Mama-katsu</div>
+                </div>
+                <p class="tarjeta-descripcion">
+                    Esposa del doctor Goro y figura materna de Aqua y Ruby.
+                    Directora de la agencia Lalalie Entertainment.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- FRASES -->
+    <section class="seccion-frases" id="frases">
+        <div class="seccion">
+            <span class="seccion-tag">★ Momentos</span>
+            <h2 class="seccion-titulo">Frases Memorables</h2>
+
+            <div class="frase-card">
+                <p class="frase-texto">"Solo hay una persona en este mundo que puede mentirte de verdad, y esa persona eres tú mismo."</p>
+                <p class="frase-autor">— Ai Hoshino</p>
+            </div>
+
+            <div class="frase-card">
+                <p class="frase-texto">"El amor que siento por mis fans no es falso. Puede que no sea el amor de una madre, pero es real a mi manera."</p>
+                <p class="frase-autor">— Ai Hoshino</p>
+            </div>
+
+            <div class="frase-card">
+                <p class="frase-texto">"En la industria del entretenimiento, fingir es sobrevivir. Pero hay momentos en que lo falso se vuelve genuino."</p>
+                <p class="frase-autor">— Aqua Hoshino</p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- SOBRE EL ANIME -->
+    <section class="seccion" id="sobre">
+        <span class="seccion-tag">★ Info</span>
+        <h2 class="seccion-titulo">Sobre el Anime</h2>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;">
+
+            <div class="frase-card" style="border-left-color: #a855f7;">
+                <p style="font-size: 0.72rem; color: #c9a0ff; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem;">Manga</p>
+                <p style="font-weight: 800; color: #fff;">Aka Akasaka & Mengo Yokoyari</p>
+            </div>
+
+            <div class="frase-card" style="border-left-color: #a855f7;">
+                <p style="font-size: 0.72rem; color: #c9a0ff; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem;">Estudio</p>
+                <p style="font-weight: 800; color: #fff;">Doga Kobo</p>
+            </div>
+
+            <div class="frase-card" style="border-left-color: #a855f7;">
+                <p style="font-size: 0.72rem; color: #c9a0ff; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem;">Temporadas</p>
+                <p style="font-weight: 800; color: #fff;">2 temporadas (2023 – 2024)</p>
+            </div>
+
+            <div class="frase-card" style="border-left-color: #a855f7;">
+                <p style="font-size: 0.72rem; color: #c9a0ff; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem;">Género</p>
+                <p style="font-weight: 800; color: #fff;">Drama · Misterio · Idol</p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <p style="font-size: 2rem; margin-bottom: 0.5rem;">⭐</p>
+        <p>Fan page de <strong>Oshi no Ko</strong> — 【推しの子】</p>
+        <p style="margin-top: 0.4rem;">Creado por <strong>SakuraNeeko</strong> · Práctica Git</p>
+    </footer>
+
+</body>
+</html>
